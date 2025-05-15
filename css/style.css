@@ -1,0 +1,157 @@
+/* Importação da fonte Dancing Script - Lembre-se de que a tag <link> DEVE estar no HTML <head> */
+/* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap'); */
+
+/* --- Estilos Gerais --- */
+body {
+    font-family: 'Dancing Script', cursive;
+    background-color: #ffeff6; /* Um rosa bem claro */
+    color: #5a3f5f; /* Um tom de roxo/vinho para o texto */
+    text-align: center; /* Centraliza a maioria dos elementos de bloco */
+    margin: 0; /* Remove a margem padrão do body */
+    padding: 0; /* Remove o padding padrão do body */
+    line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
+}
+
+header {
+    background-color: #e63946; /* Um vermelho vibrante */
+    color: white;
+    padding: 20px 0; /* Padding em cima/embaixo */
+    font-size: 1.5em;
+    margin-bottom: 30px; /* Espaço abaixo do cabeçalho */
+}
+
+header h1 {
+    margin: 0; /* Remove a margem padrão do h1 no header */
+    font-size: 1.8em; /* Tamanho um pouco maior para o título principal */
+}
+
+header p {
+    margin-top: 5px;
+    font-size: 1.1em;
+}
+
+h2 {
+    color: #e63946; /* Cor de destaque para subtítulos */
+    margin-top: 40px; /* Espaço antes dos subtítulos */
+    margin-bottom: 20px; /* Espaço depois dos subtítulos */
+    font-size: 1.6em;
+}
+
+h3 { /* Estilo para os subtítulos de Foto/Vídeo */
+    color: #e63946;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+/* Estilo para os botões de navegação (como "Voltar à Página Inicial" - se ainda existir) */
+.button {
+    display: inline-block; /* Permite definir padding e margem, e fica na mesma linha do texto se tiver espaço */
+    background-color: #e63946;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none; /* Remove o sublinhado do link */
+    border-radius: 5px; /* Cantos arredondados */
+    margin-top: 15px; /* Espaço acima do botão */
+    transition: background-color 0.3s ease; /* Adiciona uma transição suave na cor de fundo */
+}
+
+.button:hover {
+    background-color: #d62839; /* Cor um pouco mais escura ao passar o mouse */
+}
+
+/* --- Estilos para as Seções --- */
+.historia, .mensagem { /* Estilos para as seções de História e Mensagem */
+    width: 95%;
+    max-width: 800px; /* Largura máxima para essas seções */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Alinha o texto dessas seções à esquerda */
+}
+
+.historia ul {
+    list-style: none;
+    padding: 0;
+}
+
+.historia li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.mensagem p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+/* Estilos para a Seção da Galeria */
+.galeria {
+    width: 95%; /* Largura da seção da galeria */
+    max-width: 1200px; /* Largura máxima para a seção da galeria (pode ser maior para o grid) */
+    margin: 40px auto;
+    padding: 20px 0; /* Padding em cima/embaixo, sem padding lateral para o grid */
+    /* Removido background, box-shadow, etc. se você não quiser um quadro para a seção inteira */
+}
+
+
+/* --- Estilos para o Grid da Galeria --- */
+.gallery-grid {
+    display: grid; /* Ativa o layout Grid */
+    /* Define as colunas: repete colunas que se auto-ajustam, com tamanho mínimo de 180px e máximo de 1 fração do espaço */
+    /* Ajuste o '180px' para controlar o tamanho mínimo dos itens (e consequentemente o tamanho médio) */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Ajustado minmax */
+    gap: 15px; /* Espaço entre os itens do grid */
+    padding: 0 10px; /* Padding lateral para não colar nas bordas da seção */
+}
+
+/* Estilos para cada item do Grid */
+.gallery-item {
+    position: relative; /* Para posicionamento de legendas ou efeitos */
+    overflow: hidden; /* Esconde partes da mídia que possam transbordar */
+    border-radius: 8px; /* Cantos arredondados para os itens */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para cada item */
+    background-color: #eee; /* Cor de fundo enquanto a mídia carrega ou se a mídia for 'contain' */
+    cursor: pointer; /* Indica que o item é clicável (para lightbox) */
+
+    /* Para garantir que o item tenha uma proporção (ex: quadrado 1:1) */
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; /* Cria um item quadrado baseado na largura */
+}
+
+/* Estilos para Imagens e Vídeos dentro dos itens do Grid */
+.gallery-item img,
+.gallery-item video {
+    display: block;
+    width: 100%; /* Ocupa 100% da largura do item */
+    height: 100%; /* Ocupa 100% da altura do item */
+    object-fit: contain; /* <--- Garante que a mídia caiba sem cortar */
+    position: absolute; /* Posiciona a mídia dentro do item */
+    top: 0;
+    left: 0;
+}
+
+/* Efeito ao passar o mouse */
+.gallery-item:hover img,
+.gallery-item:hover video {
+    transform: scale(1.05); /* Leve zoom ao passar o mouse */
+    transition: transform 0.3s ease-in-out; /* Animação suave */
+}
+
+/* Opcional: Estilo para os controles de vídeo para não interferir com o hover/click */
+.gallery-item video::-webkit-media-controls-container {
+    z-index: 1; /* Garante que os controles fiquem por cima */
+}
+
+
+/* --- Estilos do Rodapé --- */
+footer {
+    background-color: #e63946;
+    color: white;
+    padding: 15px 0;
+    margin-top: 60px;
+    font-size: 0.9em;
+}
