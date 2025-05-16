@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora da Pergunta ❤️</title> <link rel="stylesheet" href="css/style.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="pergunta-container"> <div class="pergunta-box"> <h1>O nome da nossa filha não vai ser Antonela?</h1> <div class="button-container"> <button id="btnSim">Sim</button>
+                <button id="btnNao">Não</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Verifica se os botões existem na página atual antes de adicionar listeners
+    const btnNao = document.getElementById('btnNao');
+    const btnSim = document.getElementById('btnSim');
+
+    if (btnNao && btnSim) { // Só executa se os botões forem encontrados
+         // A referência para o container onde os botões estão (a caixa branca)
+         const perguntaBox = document.querySelector('.pergunta-box');
+         // Referência ao contêiner dos botões dentro da caixa
+         const buttonContainer = document.querySelector('.pergunta-box .button-container');
+
+
+         // Função para obter uma posição aleatória DENTRO DO pergunta-box (movimento contido na caixa branca)
+         function getRandomPositionInsideBox() {
+             if (!perguntaBox || !buttonContainer) return { x: 0, y: 0 }; // Retorna 0,0 se os containers não forem encontrados
+
+             // Obtém as dimensões do container (pergunta-box)
+             const containerWidth = perguntaBox.offsetWidth;
+             const containerHeight = perguntaBox.offsetHeight;
+
+             // Considera o espaço disponível para mover DENTRO DA CAIXA,
+             // evitando a área da pergunta no topo e o espaço do button-container na base.
+             // Altura inicial da área de pergunta + padding (aproximado)
+             const headerHeight = document.querySelector('.pergunta-box h1').offsetHeight + parseInt(window.getComputedStyle(document.querySelector('.pergunta-box h1')).marginBottom);
+             // Altura da área do button-container + padding
+             const buttonAreaHeight = buttonContainer.offsetHeight; // Já inclui padding-top
+
+             // Espaço Y disponível para o botão se mover: desde o fim do H1 até o início do button-container
+             const minY_area = headerHeight; // Começa logo abaixo do H1
+             const maxY_area = containerHeight - buttonAreaHeight; // Termina logo antes do button-container
+
+             // Subtrai a largura/altura do botão para que ele não saia da área disponível
+             const maxX_btn = containerWidth - btnNao.offsetWidth;
+             const maxY_btn = maxY_area - btnNao.offsetHeight;
+
+
+             // Gera números aleatórios dentro dos limites da ÁREA DISPONÍVEL
+             // Adiciona um padding mínimo de 10px nas bordas para não ficar colado
+             const padding = 10;
+             const randomX = Math.floor(Math.random() * Math.max(0, maxX_btn - 2 * padding)) + padding; // Randomiza no espaço, adiciona padding esquerdo
+             const randomY = Math.floor(Math.random() * Math.max(0, maxY_btn - minY_area - 2 * padding)) + minY_area + padding; // Randomiza no espaço, adiciona padding superior
+
+             // Garante que randomY não vá para uma posição negativa ou muito acima do permitido
+             const finalRandomY = Math.max(minY_area + padding, randomY);
+
+
+             return { x: randomX, y: finalRandomY };
+         }
+
+         // Função para obter uma posição aleatória DENTRO DA JANELA (movimento pela tela toda) - Pode fazer o botão sumir com o CSS atual
+         function getRandomPositionInsideWindow() {
+              // Subtrai a largura/altura do botão para que ele não saia da tela
+              const maxX = window.innerWidth - btnNao.offsetWidth;
+              const maxY = window.innerHeight - btnNao.offsetHeight;
+
+              // Garante que as posições mínimas são 0
+              const randomX = Math.floor(Math.random() * Math.max(0, maxX));
+              const randomY = Math.floor(Math.random() * Math.max(0, maxY));
+
+              return { x: randomX, y: randomY };
+         }
+
+
+         // Adiciona o evento de mover ao botão "Não" (passar o mouse)
+         // Estamos usando getRandomPositionInsideBox() para garantir que o botão permaneça visível dentro da caixa branca.
+         // Se quiser tentar que ele se mova pela tela toda, mude para getRandomPositionInsideWindow(),
+         // mas esteja ciente de que o posicionamento absoluto relativo à caixa branca pode causar problemas.
+         btnNao.addEventListener('mouseover', function() {
+             const newPosition = getRandomPositionInsideBox(); // <--- Usando InsideBox para garantir visibilidade
+
+             // Define a posição como absoluta (já definida no CSS)
+             btnNao.style.left = newPosition.x + 'px';
+             btnNao.style.top = newPosition.y + 'px';
+
+              // Remove as propriedades 'right' e 'bottom' que podem estar definidas no CSS inicial
+              btnNao.style.right = 'auto';
+              btnNao.style.bottom = 'auto';
+         });
+
+          // Adiciona o evento de toque para dispositivos móveis no botão "Não"
+          btnNao.addEventListener('touchstart', function(e) {
+             e.preventDefault(); // Evita o comportamento padrão do toque (como zoom)
+             const newPosition = getRandomPositionInsideBox(); // <--- Usando InsideBox para garantir visibilidade
+             btnNao.style.left = newPosition.x + 'px';
+             btnNao.style.top = newPosition.y + 'px';
+              btnNao.style.right = 'auto';
+              btnNao.style.bottom = 'auto';
+         });
+
+
+         // Adiciona o evento de clique no botão "Sim"
+         btnSim.addEventListener('click', function() {
+             // --- Lógica para quando a pessoa clicar em Sim ---
+
+             // >>> LÓGICA: Abrir vídeo do YouTube em uma nova aba <<<
+             const youtubeUrl = 'https://youtu.be/45A_9y1ClAQ?si=sQg2Nn__OTHnPBN4'; // <--- SUBSTITUA PELA URL REAL DO VÍDEO
+
+             // Abre a URL do YouTube em uma nova aba/janela
+             window.open(youtubeUrl, '_blank');
+
+             // Opcional: Se quiser que algo MAIS aconteça na página atual depois de abrir o vídeo,
+             // como mudar a mensagem na página, você pode adicionar essa lógica AQUI ABAIXO.
+             // Por exemplo:
+             // const perguntaTitulo = document.querySelector('.pergunta-box h1');
+             // if (perguntaTitulo) {
+             //    perguntaTitulo.innerText = 'SABIA! Espero que goste do vídeo que escolhi!';
+             //    perguntaTitulo.style.color = '#4CAF50'; // Muda a cor para verde
+             // }
+             // const buttonContainer = document.querySelector('.pergunta-box .button-container');
+             // if (buttonContainer) {
+             //     buttonContainer.style.display = 'none'; // Esconde os botões
+             // }
+             // ... (outras ações)
+         });
+    }
+});
+    </script>
+
+</body>
+</html>

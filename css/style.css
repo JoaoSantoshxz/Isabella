@@ -6,10 +6,11 @@ body {
     font-family: 'Dancing Script', cursive;
     background-color: #ffeff6; /* Um rosa bem claro */
     color: #5a3f5f; /* Um tom de roxo/vinho para o texto */
-    text-align: center; /* Centraliza a maioria dos elementos de bloco */
+    /* text-align: center; Removido para flexbox centralizar */
     margin: 0; /* Remove a margem padrão do body */
     padding: 0; /* Remove o padding padrão do body */
     line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
+    overflow-x: hidden; /* Evita scroll horizontal em excesso */
 }
 
 header {
@@ -18,6 +19,7 @@ header {
     padding: 20px 0; /* Padding em cima/embaixo */
     font-size: 1.5em;
     margin-bottom: 30px; /* Espaço abaixo do cabeçalho */
+    text-align: center; /* Centraliza o texto do header */
 }
 
 header h1 {
@@ -35,6 +37,7 @@ h2 {
     margin-top: 40px; /* Espaço antes dos subtítulos */
     margin-bottom: 20px; /* Espaço depois dos subtítulos */
     font-size: 1.6em;
+    text-align: center; /* Centraliza os h2 das seções */
 }
 
 h3 { /* Estilo para os subtítulos de Foto/Vídeo */
@@ -42,6 +45,7 @@ h3 { /* Estilo para os subtítulos de Foto/Vídeo */
     margin-top: 30px;
     margin-bottom: 15px;
     font-size: 1.4em;
+    text-align: center; /* Centraliza os h3 das seções */
 }
 
 /* Estilo para os botões de navegação (como "Voltar à Página Inicial" - se ainda existir) */
@@ -54,6 +58,10 @@ h3 { /* Estilo para os subtítulos de Foto/Vídeo */
     border-radius: 5px; /* Cantos arredondados */
     margin-top: 15px; /* Espaço acima do botão */
     transition: background-color 0.3s ease; /* Adiciona uma transição suave na cor de fundo */
+    font-family: 'Dancing Script', cursive; /* Adiciona a fonte */
+    font-size: 1em; /* Tamanho da fonte */
+    cursor: pointer;
+    border: none;
 }
 
 .button:hover {
@@ -61,7 +69,7 @@ h3 { /* Estilo para os subtítulos de Foto/Vídeo */
 }
 
 /* --- Estilos para as Seções --- */
-.historia, .mensagem { /* Estilos para as seções de História e Mensagem */
+.historia, .mensagem, .versiculos { /* Estilos para as seções de História, Mensagem, Versículos */
     width: 95%;
     max-width: 800px; /* Largura máxima para essas seções */
     margin: 40px auto;
@@ -86,6 +94,20 @@ h3 { /* Estilo para os subtítulos de Foto/Vídeo */
     font-size: 1.2em;
     margin-bottom: 15px;
 }
+
+.versiculos-container .referencia {
+    font-size: 1em;
+    font-style: italic;
+    text-align: right;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/* Estilo para esconder os versículos adicionais por padrão */
+.versiculos-hidden {
+    display: none;
+}
+
 
 /* Estilos para a Seção da Galeria */
 .galeria {
@@ -128,7 +150,7 @@ h3 { /* Estilo para os subtítulos de Foto/Vídeo */
     display: block;
     width: 100%; /* Ocupa 100% da largura do item */
     height: 100%; /* Ocupa 100% da altura do item */
-    object-fit: contain; /* <--- Garante que a mídia caiba sem cortar */
+    object-fit: cover; /* Use cover para preencher o espaço sem distorcer */
     position: absolute; /* Posiciona a mídia dentro do item */
     top: 0;
     left: 0;
@@ -154,4 +176,176 @@ footer {
     padding: 15px 0;
     margin-top: 60px;
     font-size: 0.9em;
+    text-align: center; /* Centraliza o texto do rodapé */
+}
+
+/* --- ESTILOS PARA A PÁGINA DE LOGIN (index.html) --- */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Usa 100vh para centralizar na tela inteira */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.login-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.login-box h2 {
+    color: #e63946;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    /* text-align: center; (Já está no h2 geral, mas pode ser explicitado aqui) */
+}
+
+.login-box p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #5a3f5f; /* Usa a cor de texto principal */
+}
+
+.login-box input[type="text"] {
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 24px); /* Ajusta a largura considerando o padding */
+    font-size: 1.1em;
+    font-family: 'Dancing Script', cursive; /* Usa a mesma fonte */
+    box-sizing: border-box; /* Inclui border e padding na largura total */
+}
+
+.login-box button {
+    /* Herda estilos de .button ou define específicos */
+    background-color: #e63946;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-family: 'Dancing Script', cursive;
+    transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+    background-color: #d62839;
+}
+
+.error-message {
+    color: #d62839; /* Cor para mensagem de erro */
+    margin-top: 15px;
+    font-size: 1em;
+    min-height: 1.2em; /* Reserva espaço para a mensagem */
+    text-align: center; /* Centraliza a mensagem de erro */
+}
+
+/* --- ESTILOS PARA A PÁGINA DA PERGUNTA (pergunta.html) --- */
+/* Contêiner principal para centralizar a caixa da pergunta na tela */
+.pergunta-container {
+    display: flex; /* Usa Flexbox para centralização */
+    flex-direction: column; /* Alinha os itens verticalmente */
+    justify-content: center; /* Centraliza horizontalmente no contêiner flex */
+    align-items: center; /* Centraliza verticalmente no contêiner flex */
+    min-height: 100vh; /* Garante que o contêiner ocupe pelo menos toda a altura da janela */
+    padding: 20px; /* Espaço interno */
+    box-sizing: border-box; /* Inclui padding e borda no cálculo da largura/altura */
+    overflow: hidden; /* Essencial para esconder o botão se ele sair da área visível */
+    position: relative; /* Define este contêiner como o contexto de posicionamento para elementos absolutos dentro dele (como o botão "Não" se ele for posicionado em relação à janela) */
+}
+
+/* Caixa que envolve a pergunta e os botões */
+.pergunta-box {
+    background-color: #fff; /* Fundo branco, como as seções principais */
+    padding: 30px; /* Espaço interno */
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave, consistente com outros elementos */
+    max-width: 90%; /* Garante que a caixa não seja muito larga em telas grandes */
+    width: 500px; /* Largura preferencial da caixa */
+    text-align: center; /* Centraliza o texto dentro da caixa */
+    position: relative; /* ESSENCIAL: Define este contêiner como o contexto de posicionamento para os botões ABSOLUTOS dentro dele */
+}
+
+/* Estilo para a pergunta principal dentro da caixa */
+.pergunta-box h1 {
+    color: #e63946; /* Usa a cor de destaque vermelha */
+    margin-bottom: 30px; /* Espaço abaixo da pergunta */
+    font-size: 2.2em; /* Tamanho da fonte maior para a pergunta */
+    text-align: center; /* Garante que a pergunta esteja centralizada */
+}
+
+/* Contêiner para os botões dentro da caixa da pergunta */
+.pergunta-box .button-container {
+    display: block; /* Permite posicionar os botões absolutamente sem Flexbox aqui */
+    position: relative; /* Define este contêiner como o contexto de posicionamento para os botões ABSOLUTOS */
+    height: 80px; /* Define uma altura mínima para garantir espaço para os botões */
+    z-index: 1; /* Garante que este contêiner (e o botão Sim) fiquem acima do botão Não em movimento */
+    padding-top: 20px; /* Espaço acima dos botões para separá-los da pergunta */
+}
+
+/* Estilos gerais aplicados a AMBOS os botões dentro da caixa */
+.pergunta-box #btnSim,
+.pergunta-box #btnNao {
+    padding: 12px 25px; /* Padding interno maior */
+    font-size: 1.5em; /* Tamanho da fonte maior para botões de ação */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    border-radius: 8px; /* Cantos arredondados */
+    cursor: pointer; /* Indica que o elemento é clicável */
+    transition: all 0.3s ease; /* Animação suave para mudanças (cor, posição, etc.) */
+    font-family: 'Dancing Script', cursive; /* Usa a fonte principal do site */
+    position: absolute; /* ESSENCIAL: Permite que a posição seja controlada pelo JavaScript */
+    bottom: 0; /* Alinhados na parte inferior do button-container */
+}
+
+/* Estilos específicos para o botão "Sim" */
+.pergunta-box #btnSim {
+    background-color: #4CAF50; /* Cor verde para "Sim" */
+    left: 25%; /* Posição inicial a partir da esquerda do button-container */
+    transform: translateX(-50%); /* Ajusta a posição para que o CENTRO do botão fique em 25% */
+    z-index: 2; /* Garante que o botão "Sim" fique sempre acima do "Não" */
+}
+.pergunta-box #btnSim:hover {
+    background-color: #45a049; /* Cor mais escura ao passar o mouse */
+}
+
+/* Estilos específicos para o botão "Não" */
+.pergunta-box #btnNao {
+    background-color: #f44336; /* Cor vermelha para "Não" */
+    right: 25%; /* Posição inicial a partir da direita do button-container */
+     transform: translateX(50%); /* Ajusta a posição para que o CENTRO do botão fique em 25% a partir da direita */
+    z-index: 0; /* Garante que o botão "Não" fique abaixo do "Sim" */
+    white-space: nowrap; /* Evita que o texto "Não" quebre em múltiplas linhas */
+}
+.pergunta-box #btnNao:hover {
+    background-color: #d32f2f; /* Cor mais escura ao passar o mouse */
+}
+
+/* Ajustes de Responsividade para telas menores */
+@media (max-width: 600px) {
+    .pergunta-box h1 {
+        font-size: 1.8em; /* Reduz o tamanho da fonte da pergunta */
+    }
+     /* Reduz o tamanho e padding dos botões em telas menores */
+     .pergunta-box #btnSim,
+     .pergunta-box #btnNao {
+         font-size: 1.2em;
+         padding: 10px 20px;
+     }
+     /* Ajusta a posição inicial dos botões para ficarem mais próximos do centro */
+     .pergunta-box #btnSim { left: 20%; }
+     .pergunta-box #btnNao { right: 20%; transform: translateX(50%); } /* Mantém a centralização baseada na direita */
+     /* Ajusta a altura do contêiner dos botões */
+     .pergunta-box .button-container {
+         height: 60px;
+     }
 }
