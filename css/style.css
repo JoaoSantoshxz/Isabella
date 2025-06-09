@@ -349,3 +349,39 @@ footer {
          height: 60px;
      }
 }
+
+/* Seu CSS existente... */
+
+header {
+    background-color: #ffcccc; /* Cor de fundo do cabeçalho */
+    padding: 20px;
+    text-align: center;
+    color: #880e4f;
+    font-family: 'Dancing Script', cursive; /* Mantendo a fonte Dancing Script para o cabeçalho */
+}
+
+header h1 {
+    font-size: 3em;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+.contador-dias-header {
+    font-size: 1.8em; /* Tamanho maior para a contagem */
+    font-weight: bold;
+    color: #c2185b; /* Uma cor de destaque para a contagem */
+    margin-top: 15px; /* Espaçamento acima da contagem */
+    animation: fadeIn 2s ease-in-out; /* Adiciona uma pequena animação */
+}
+
+/* Animação simples para a contagem */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ... o restante do seu CSS ... */
