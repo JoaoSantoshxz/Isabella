@@ -384,4 +384,102 @@ header p {
     to { opacity: 1; }
 }
 
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img, .swiper-slide video {
+    display: block;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Cor dos botões do carrossel para combinar com o tema */
+.swiper-button-next, .swiper-button-prev {
+    color: #ff4d6d;
+}
+
+.swiper-pagination-bullet-active {
+    background: #ff4d6d;
+}
 /* ... o restante do seu CSS ... */
+
+/* Container do Grid de 5 itens por slide */
+.grid-5 {
+    display: grid;
+    /* Cria 5 colunas no desktop, ajusta para 2 ou 1 no celular */
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 15px;
+    padding: 20px 50px; /* Espaço para as setas do carrossel */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ajuste dos containers dos slides */
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Faz com que o slide não ocupe a tela toda, deixando-o mais "fino" */
+    transition: transform 0.3s ease;
+}
+
+/* Ajuste específico para Fotos e Vídeos */
+.swiper-slide img, 
+.swiper-slide video {
+    width: 100%;
+    /* Altura maior: ajuste aqui se quiser ainda mais alto */
+    height: 450px; 
+    /* Mantém a proporção da imagem sem achatar */
+    object-fit: cover; 
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Melhora o efeito do slide do meio */
+.swiper-slide-active {
+    transform: scale(1.05); /* Aumenta levemente o do centro */
+}
+
+.poesia-tech {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: #fff5f7; /* Um fundo levemente rosado */
+}
+
+.card-poesia {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #ff4d6d; /* Barra lateral de destaque */
+    max-width: 600px;
+    line-height: 1.8;
+    font-family: 'Dancing Script', cursive; /* A fonte que você já usa no projeto */
+    font-size: 1.4rem;
+    color: #333;
+    text-align: center;
+}
+
+.card-poesia p {
+    margin-bottom: 10px;
+}
+
+.card-poesia strong {
+    color: #ff4d6d;
+    font-weight: bold;
+}
